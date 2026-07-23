@@ -1,7 +1,7 @@
 [project]
 name = "resume"
 version = "0.1.0"
-description = "Personal portfolio website"
+description = "Portfolio website"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = []
