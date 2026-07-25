@@ -17,3 +17,6 @@ db.sqlite3
 
 # uv
 uv.lock
+
+
+/media/
