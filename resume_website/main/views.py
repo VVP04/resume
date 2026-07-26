@@ -1,5 +1,6 @@
-from django.views.generic import ListView, DetailView, TemplateView
-from .models import Project, Skill, Education
+from django.views.generic import DetailView, ListView, TemplateView
+
+from .models import Education, Project, Skill
 
 
 class HomeView(TemplateView):

@@ -8,3 +8,8 @@ dependencies = [
     "django>=6.0.7",
     "pillow>=12.3.0",
 ]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.16.0",
+]
