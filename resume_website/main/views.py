@@ -4,7 +4,7 @@ from .models import Project, Skill, Education
 
 class HomeView(TemplateView):
     """Главная страница"""
-    template_name = 'main/home.html'
+    template_name = 'index.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

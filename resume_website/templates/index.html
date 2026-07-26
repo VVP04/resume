@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+Главная
+{% endblock %}
+
+
+{% block content %}
+
+<h1>
+    Владимир
+</h1>
+
+<h3 class="text-muted">
+    Python / Django разработчик
+</h3>
+
+
+<hr>
+
+
+<h2>
+    Образование
+</h2>
+
+
+{% for education in education_list %}
+
+<div class="card mb-3">
+
+    <div class="card-body">
+
+        <h5>
+            {{ education.institution }}
+        </h5>
+
+        <p>
+            {{ education.degree }}
+        </p>
+
+        <p>
+            {{ education.start_date }}
+            -
+            {{ education.end_date }}
+        </p>
+
+        <p>
+            {{ education.description }}
+        </p>
+
+    </div>
+
+</div>
+
+{% empty %}
+
+<p>
+    Образование отсутствует.
+</p>
+
+{% endfor %}
+
+
+{% endblock %}
