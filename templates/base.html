@@ -1,80 +1,139 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>{% block title %}Резюме{% endblock %}</title>
 
     <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
 
     <!-- Bootstrap Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+        rel="stylesheet"
+    >
 
-    <!-- Свой CSS -->
-    <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+    <!-- Custom CSS -->
+    <link
+        rel="stylesheet"
+        href="{% static 'main/css/style.css' %}"
+    >
 
     {% block extra_css %}{% endblock %}
 </head>
+
 <body>
 
-    <!-- Мобильная кнопка -->
-    <button class="mobile-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">
+    <!-- Mobile menu toggle -->
+    <button
+        class="mobile-toggle"
+        onclick="document.getElementById('sidebar').classList.toggle('open')"
+    >
         <i class="bi bi-list"></i>
     </button>
 
-    <!-- Боковая панель -->
+    <!-- Sidebar navigation -->
     <aside class="sidebar" id="sidebar">
-        <img src="{% static 'main/img/profile.jpg' %}" alt="Фото" class="profile-img">
-        <h3>Твоё имя</h3>
-        <p class="subtitle">Твоя специализация</p>
 
+        <!-- Main navigation -->
         <ul class="nav">
+
             <li>
-                <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'home' %}">
-                    <i class="bi bi-house"></i> Главная
+                <a
+                    class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}"
+                    href="{% url 'home' %}"
+                >
+                    <i class="bi bi-house"></i>
+                    Главная
                 </a>
             </li>
+
             <li>
-                <a class="nav-link {% if request.resolver_match.url_name == 'portfolio_list' %}active{% endif %}" href="{% url 'portfolio_list' %}">
-                    <i class="bi bi-images"></i> Портфолио
+                <a
+                    class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}"
+                    href="{% url 'about' %}"
+                >
+                    <i class="bi bi-person"></i>
+                    Обо мне
                 </a>
             </li>
+
             <li>
-                <a class="nav-link {% if request.resolver_match.url_name == 'skills' %}active{% endif %}" href="{% url 'skills' %}">
-                    <i class="bi bi-tools"></i> Навыки
+                <a
+                    class="nav-link {% if request.resolver_match.url_name == 'resume' %}active{% endif %}"
+                    href="{% url 'resume' %}"
+                >
+                    <i class="bi bi-file-earmark-text navicon"></i>
+                    Резюме
                 </a>
             </li>
+
             <li>
-                <a class="nav-link {% if request.resolver_match.url_name == 'contacts' %}active{% endif %}" href="{% url 'contacts' %}">
-                    <i class="bi bi-envelope"></i> Контакты
+                <a
+                    class="nav-link {% if request.resolver_match.url_name == 'portfolio_list' %}active{% endif %}"
+                    href="{% url 'portfolio_list' %}"
+                >
+                    <i class="bi bi-briefcase"></i>
+                    Портфолио
                 </a>
             </li>
+
+            <li>
+                <a
+                    class="nav-link {% if request.resolver_match.url_name == 'contacts' %}active{% endif %}"
+                    href="{% url 'contacts' %}"
+                >
+                    <i class="bi bi-envelope"></i>
+                    Контакты
+                </a>
+            </li>
+
         </ul>
 
-        <div class="social-links">
-            <a href="#" title="GitHub"><i class="bi bi-github"></i></a>
-            <a href="#" title="Telegram"><i class="bi bi-telegram"></i></a>
-            <a href="#" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
-            <a href="#" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+        <!-- Social media links -->
+        <div class="social-links text-center">
+
+            <a href="#" class="github" title="GitHub">
+                <i class="bi bi-github"></i>
+            </a>
+
+            <a href="#" class="telegram" title="Telegram">
+                <i class="bi bi-telegram"></i>
+            </a>
+
+            <a href="#" class="linkedin" title="LinkedIn">
+                <i class="bi bi-linkedin"></i>
+            </a>
+
         </div>
     </aside>
 
-    <!-- Основной контент -->
+    <!-- Main content -->
     <div class="main-content">
+
         <main>
             {% block content %}{% endblock %}
         </main>
 
         <footer>
-            &copy; {% now "Y" %} Твоё имя. Все права защищены.
+            © {% now "Y" %} Владимир Плесовских
         </footer>
+
     </div>
 
-    <!-- Bootstrap 5 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap 5 JavaScript -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    ></script>
 
     {% block extra_js %}{% endblock %}
+
 </body>
 </html>
