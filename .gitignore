@@ -23,3 +23,6 @@ uv.lock
 
 
 .ruff_cache
+
+
+.env
