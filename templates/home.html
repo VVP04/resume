@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Главная | Владимир Плесовских{% endblock %}
+
+{% block extra_css %}
+<link
+    rel="stylesheet"
+    href="{% static 'main/css/home.css' %}"
+>
+{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+    
+    <div class="bg-bubble bubble-left"></div>
+    <div class="bg-bubble bubble-right"></div>
+
+    <div class="hero-content">
+
+        <h1 class="hero-title">
+            Ре<span class="underline-text">зюме</span>
+        </h1>
+
+        <h2 class="hero-name">
+            Владимир Плесовских
+        </h2>
+
+        <p class="hero-role">
+            Я <span class="hero-role-highlight"></span>
+            <span class="hero-cursor">|</span>
+        </p>
+
+        <p class="hero-description">
+            Объединяю разработку, маркетинг и аналитику,
+            чтобы создавать цифровые решения для реальных задач бизнеса.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a
+                href="{% url 'portfolio_list' %}"
+                class="hero-btn hero-btn-primary"
+            >
+                Мои работы
+            </a>
+
+            <a
+                href="{% url 'contacts' %}"
+                class="hero-btn hero-btn-secondary"
+            >
+                Связаться со мной
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="hero-image-wrapper">
+
+        <div class="hero-image-card">
+            <img
+                src="{% static 'main/img/profile.jpg' %}"
+                alt="Владимир Плесовских"
+                class="hero-image"
+            >
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'main/js/home.js' %}"></script>
+{% endblock %}

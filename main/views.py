@@ -6,7 +6,7 @@ from .models import Education, Project
 class HomeView(TemplateView):
     """Home page."""
 
-    template_name = 'index.html'
+    template_name = 'home.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
