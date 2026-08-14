@@ -31,6 +31,10 @@ body {
 
 /* ===== Main navigation ===== */
 
+.sidebar nav {
+    width: 100%;
+}
+
 .sidebar .nav {
     flex-direction: column;
     width: 100%;
@@ -61,6 +65,16 @@ body {
     text-align: center;
 }
 
+.social-links .max img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0.7);
+    transition: filter 0.3s ease;
+}
+
+.social-links .max:hover img {
+    filter: brightness(1);
+}
 
 /* ===== Social media links ===== */
 
