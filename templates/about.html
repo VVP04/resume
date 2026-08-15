@@ -1,0 +1,201 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Обо мне | Владимир Плесовских{% endblock %}
+
+{% block extra_css %}
+<link
+    rel="stylesheet"
+    href="{% static 'main/css/about.css' %}"
+>
+{% endblock %}
+
+{% block content %}
+
+<section class="about">
+
+    <aside class="about-profile">
+
+        <div class="about-avatar">
+            <img
+                src="{% static 'main/img/profile.jpg' %}"
+                alt="Владимир Плесовских"
+            >
+        </div>
+
+        <h1 class="about-name">
+            Владимир Плесовских
+        </h1>
+
+        <div class="about-specializations">
+            <span>Разработка</span>
+            <span>Маркетинг</span>
+            <span>Аналитика</span>
+        </div>
+
+        <div class="about-contacts">
+
+            <a
+                href="mailto:vova.plesovkikh@gmail.com"
+                class="about-contact"
+            >
+                <i class="bi bi-envelope"></i>
+                <span>vova.plesovkikh@gmail.com</span>
+            </a>
+
+            <a
+                href="tel:+79129229471"
+                class="about-contact"
+            >
+                <i class="bi bi-telephone"></i>
+                <span>+7 912 922-94-71</span>
+            </a>
+
+            <div class="about-contact">
+                <i class="bi bi-geo-alt"></i>
+                <span>Россия, Екатеринбург</span>
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <div class="about-content">
+
+        <h2 class="about-title">
+            Создаю цифровые решения,
+            основанные на технологиях и данных
+        </h2>
+
+        <div class="about-description">
+
+            <p>
+                Работаю на пересечении разработки, маркетинга и аналитики.
+                Создаю веб-продукты, исследую рынки и использую данные,
+                чтобы находить решения для конкретных бизнес-задач.
+            </p>
+
+            <p>
+                Мне интересно разбираться в том, как устроен бизнес,
+                находить точки роста и превращать идеи в работающие
+                инструменты. В работе ценю системный подход,
+                понятную логику и измеримый результат.
+            </p>
+
+        </div>
+
+
+        <section class="about-section">
+
+            <h3 class="about-section-title">
+                Мои направления
+            </h3>
+
+            <div class="about-directions">
+
+                <div class="about-direction">
+                    <i class="bi bi-code-slash"></i>
+
+                    <h4>Разработка</h4>
+
+                    <p>
+                        Разработка на Python и Django, работа с базами
+                        данных и API. Использую Git, Docker, Redis
+                        и автоматическое тестирование.
+                    </p>
+                </div>
+
+                <div class="about-direction">
+                    <i class="bi bi-megaphone"></i>
+
+                    <h4>Маркетинг</h4>
+
+                    <p>
+                        Настройка и оптимизация рекламных кампаний,
+                        SEO-продвижение, работа с Яндекс Директ
+                        и VK Рекламой.
+                    </p>
+                </div>
+
+                <div class="about-direction">
+                    <i class="bi bi-bar-chart"></i>
+
+                    <h4>Аналитика</h4>
+
+                    <p>
+                        Анализ маркетинговых и бизнес-данных с помощью
+                        Python и SQL, работа с Яндекс Метрикой
+                        и Google Analytics.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="about-section">
+
+            <div class="about-info-grid">
+
+                <div class="about-info-item">
+                    <h4>Специализация</h4>
+
+                    <p>
+                        Python-разработка, digital-маркетинг
+                        и маркетинговая аналитика.
+                    </p>
+                </div>
+
+                <div class="about-info-item">
+                    <h4>Язык</h4>
+
+                    <p>
+                        Русский, Английский
+                    </p>
+                </div>
+
+                <div class="about-info-item">
+                    <h4>Образование</h4>
+
+                    <p>
+                        УрФУ, международный и корпоративный менеджмент,
+                        профиль «Маркетинг». Завершил курс
+                        «Python-разработчик» от Hexlet.
+                    </p>
+                </div>
+
+                <div class="about-info-item">
+                    <h4>Опыт</h4>
+
+                    <p>
+                        Нахожусь в начале профессионального пути,
+                        развиваюсь в разработке, маркетинге и аналитике.
+                        Имею практический опыт работы с современным
+                        стеком технологий и готов быстро разбираться
+                        в сложных задачах.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <div class="about-buttons">
+
+            <a
+                href="{% url 'contacts' %}"
+                class="about-btn about-btn-primary"
+            >
+                Обсудить проект
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
