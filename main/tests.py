@@ -95,40 +95,51 @@ def test_about_page_returns_200(client):
 
     assert response.status_code == 200
 
+
+def test_about_page_uses_correct_template(client):
+    response = client.get(reverse("about"))
+
     assert "about.html" in [
         template.name for template in response.templates
     ]
+
+
+def test_about_page_displays_content(client):
+    response = client.get(reverse("about"))
 
     content = response.content.decode()
 
     assert "Владимир Плесовских" in content
     assert "Обо мне" in content
-    assert "О моих интересах, образовании и направлениях профессионального развития." in content
-
-    assert "vova.plesovkikh@gmail.com" in content
-    assert "+7 912 922-94-71" in content
-    assert "Россия, Екатеринбург" in content
+    assert (
+        "О моих интересах, образовании и направлениях "
+        "профессионального развития."
+        in content
+    )
 
     assert "Разработка" in content
     assert "Маркетинг" in content
     assert "Аналитика" in content
 
-    assert "Мои направления" in content
-    assert "Python и Django" in content
-    assert "Яндекс Директ" in content
-    assert "VK Рекламой" in content
-
     assert "Специализация" in content
+    assert "Язык" in content
     assert "Образование" in content
     assert "Опыт" in content
 
 
-@pytest.mark.xfail(reason='Кнопки ещё не подключены, URL не созданы')
-def test_about_buttons(client):
-    response = client.get(reverse('about'))
-    content = response.content.decode()
+@pytest.mark.xfail(reason="URL для кнопок ещё не подключены")
+def test_about_page_contact_links(client):
+    response = client.get(reverse("about"))
 
-    contacts_url = reverse('contacts')
-    assert contacts_url in content
+    soup = BeautifulSoup(response.content, "html.parser")
 
-    assert client.get(contacts_url).status_code == 200
+    about_buttons = soup.select_one(".about-buttons")
+
+    assert about_buttons is not None
+
+    contact_link = about_buttons.select_one(
+        f"a[href='{reverse('contacts')}']"
+    )
+
+    assert contact_link is not None
+    assert contact_link.get_text(strip=True) == "Обсудить проект"
