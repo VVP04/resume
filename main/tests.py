@@ -49,35 +49,49 @@ def test_homepage_returns_200(client):
 
     assert response.status_code == 200
 
+
+def test_homepage_uses_correct_template(client):
+    response = client.get(reverse("home"))
+
     assert "home.html" in [
         template.name for template in response.templates
     ]
 
-    assert 'Владимир Плесовских' in response.content.decode()
-    assert 'Резюме' in response.content.decode()
 
+def test_homepage_displays_content(client):
+    response = client.get(reverse("home"))
 
-@pytest.mark.xfail(reason='Кнопки ещё не подключены, URL не созданы')
-def test_home_buttons(client):
-    response = client.get(reverse('home'))
     content = response.content.decode()
 
-
-    portfolio_url = reverse('portfolio_list')
-    contacts_url = reverse('contacts')
-    assert portfolio_url in content
-    assert contacts_url in content
+    assert "Владимир Плесовских" in content
+    assert "Резюме" in content
 
 
-    assert client.get(portfolio_url).status_code == 200
-    assert client.get(contacts_url).status_code == 200
+@pytest.mark.xfail(reason="URL для кнопок ещё не подключены")
+def test_home_page_hero_links(client):
+    response = client.get(reverse("home"))
+
+    soup = BeautifulSoup(response.content, "html.parser")
+
+    hero_buttons = soup.select_one(".hero-buttons")
+
+    assert hero_buttons is not None
+
+    portfolio_link = hero_buttons.select_one(
+        f"a[href='{reverse('portfolio_list')}']"
+    )
+    assert portfolio_link is not None
+    assert portfolio_link.get_text(strip=True) == "Мои работы"
+
+    contacts_link = hero_buttons.select_one(
+        f"a[href='{reverse('contacts')}']"
+    )
+    assert contacts_link is not None
+    assert contacts_link.get_text(strip=True) == "Связаться со мной"
 
 
-@pytest.mark.django_db
-def test_about_page(client):
-    url = reverse('about')
-
-    response = client.get(url)
+def test_about_page_returns_200(client):
+    response = client.get(reverse("about"))
 
     assert response.status_code == 200
 
