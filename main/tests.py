@@ -1,12 +1,51 @@
 import pytest
+from bs4 import BeautifulSoup
 from django.urls import reverse
 
 
-@pytest.mark.django_db
-def test_homepage(client):
-    url = reverse('home')
+@pytest.mark.xfail(reason="URL ещё не подключены")
+def test_sidebar_navigation_links(client):
+    response = client.get(reverse("home"))
 
-    response = client.get(url)
+    soup = BeautifulSoup(response.content, "html.parser")
+
+    sidebar = soup.select_one(".sidebar")
+
+    assert sidebar is not None
+
+    home_link = sidebar.select_one(
+        f"a[href='{reverse('home')}']"
+    )
+    assert home_link is not None
+    assert home_link.get_text(strip=True) == "Главная"
+
+    about_link = sidebar.select_one(
+        f"a[href='{reverse('about')}']"
+    )
+    assert about_link is not None
+    assert about_link.get_text(strip=True) == "Обо мне"
+
+    resume_link = sidebar.select_one(
+        f"a[href='{reverse('resume')}']"
+    )
+    assert resume_link is not None
+    assert resume_link.get_text(strip=True) == "Резюме"
+
+    portfolio_link = sidebar.select_one(
+        f"a[href='{reverse('portfolio_list')}']"
+    )
+    assert portfolio_link is not None
+    assert portfolio_link.get_text(strip=True) == "Портфолио"
+
+    contacts_link = sidebar.select_one(
+        f"a[href='{reverse('contacts')}']"
+    )
+    assert contacts_link is not None
+    assert contacts_link.get_text(strip=True) == "Контакты"
+
+
+def test_homepage_returns_200(client):
+    response = client.get(reverse("home"))
 
     assert response.status_code == 200
 
