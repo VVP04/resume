@@ -1,0 +1,457 @@
+/* ===== Resume ===== */
+
+.resume {
+    display: grid;
+    grid-template-columns: 450px 1fr;
+    align-items: start;
+
+    max-width: 1200px;
+    min-height: calc(100vh - 80px);
+
+    gap: 60px;
+    padding: 60px 50px;
+
+    font-family: "Manrope", sans-serif;
+}
+
+
+/* ===== Profile card ===== */
+
+.resume-profile {
+    position: sticky;
+    top: 40px;
+
+    padding: 32px 28px;
+
+    background-color: var(--bg-card);
+
+    border-radius: 24px;
+
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+}
+
+
+/* ===== Avatar ===== */
+
+.resume-avatar {
+    width: 200px;
+    height: 200px;
+
+    margin: 0 auto 24px;
+
+    overflow: hidden;
+
+    border: 5px solid #333333;
+    border-radius: 5%;
+}
+
+.resume-avatar img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+/* ===== Profile information ===== */
+
+.resume-name {
+    margin: 0 0 20px;
+
+    color: var(--text-primary);
+
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1.3;
+
+    text-align: center;
+}
+
+
+/* ===== Skills ===== */
+
+.resume-skills {
+    margin-top: 32px;
+    padding: 24px 20px;              
+
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+
+/* ===== Skills title ===== */
+
+.resume-section-title {
+    margin: 0 0 20px;
+
+    color: var(--text-primary);
+
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+
+/* ===== Skills groups ===== */
+
+.resume-skills-group {
+    margin-bottom: 20px;
+}
+
+.resume-skills-group:last-child {
+    margin-bottom: 0;
+}
+
+
+/* ===== Group title ===== */
+
+.resume-skills-group h3 {
+    margin: 0 0 12px;
+
+    color: var(--text-muted);
+
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+}
+
+
+/* ===== Skill list ===== */
+
+.resume-skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+
+/* ===== Skill tag ===== */
+
+.resume-skill-list span {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 6px 12px;
+
+    background-color: rgba(255, 255, 255, 0.04);
+    color: var(--text-muted);
+
+    border: 1px solid var(--border);
+    border-radius: 6px;
+
+    font-size: 0.8rem;
+    font-weight: 500;
+    line-height: 1.3;
+
+    cursor: default;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* ===== Skill hover ===== */
+
+.resume-skill-list span:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: var(--text-primary);
+
+    border-color: var(--text-primary);
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+
+/* ===== Education and Experience ===== */
+
+.resume-education {
+    margin-top: 10px;
+}
+
+.resume-experience {
+    margin-top: 40px;
+}
+
+/* ===== Education and Experience title ===== */
+
+.education-block-title, .experience-block-title {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 0 0 30px 0;
+
+    color: var(--text-primary);
+
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.education-block-title i, .experience-block-title i {
+    color: var(--text-primary);
+    opacity: 0.9;
+}
+
+
+/* ===== Education sections ===== */
+
+.education-type-section {
+    margin-bottom: 40px;
+}
+
+.education-type-section:last-child {
+    margin-bottom: 0;
+}
+
+
+/* ===== Education type title ===== */
+
+.education-type-title {
+    margin: 0 0 24px 0;
+
+    color: var(--text-muted);
+
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+
+/* ===== Education and Experience timeline ===== */
+
+.education-timeline, .experience-timeline {
+    position: relative;
+    padding-left: 32px;
+}
+
+
+/* ===== Education and Experience timeline item ===== */
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+
+    left: -26.5px; 
+    
+    top: 14px; 
+    
+    bottom: 0; 
+
+    width: 2px;
+    background-color: var(--border);
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+
+/* ===== Education and Experience timeline marker ===== */
+
+.timeline-marker {
+    position: absolute;
+    left: -34px;
+    top: 6px;
+
+    width: 15px;
+    height: 15px;
+
+    background-color: var(--text-primary);
+    border-radius: 50%;
+}
+
+
+/* ===== Education and Experience timeline content ===== */
+
+.timeline-content {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* ===== Education specialty and Experience position ===== */
+
+.education-specialty, .experience-position {
+    margin: 0 0 6px 0;
+
+    color: var(--text-primary);
+
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+
+/* ===== Education degree ===== */
+
+.education-degree {
+    margin-bottom: 4px;
+
+    color: var(--text-primary);
+
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+
+/* ===== Education and Experience years ===== */
+
+.education-years, .experience-years {
+    margin-bottom: 12px;
+
+    color: var(--text-muted);
+
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+
+/* ===== Education institution and Experience company ===== */
+
+.education-institution, .experience-company {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+
+    color: var(--text-primary);
+
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.education-institution i, .experience-company i {
+    color: var(--text-muted);
+}
+
+
+/* ===== Education description ===== */
+
+.education-description {
+    margin: 0;
+
+    color: var(--text-muted);
+
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+
+/* ===== Education document ===== */
+
+.education-document {
+    margin-top: 14px;
+}
+
+.education-document a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    color: var(--text-muted);
+
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+
+    border-bottom: 1px dashed var(--border);
+
+    transition: 
+        color 0.2s ease, 
+        border-color 0.2s ease;
+}
+
+
+/* ===== Education document hover ===== */
+
+.education-document a:hover {
+    color: var(--text-primary);
+    border-bottom-color: var(--text-primary);
+}
+
+
+/* ===== Experience description ===== */
+
+.experience-description {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.experience-description li {
+    margin-bottom: 8px;
+
+    color: var(--text-muted);
+
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.experience-description li:last-child {
+    margin-bottom: 0;
+}
+
+
+/* ===== Buttons ===== */
+
+.resume-buttons {
+    display: flex;
+    align-items: center;
+
+    margin-top: 45px;
+}
+
+.resume-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 50px;
+    padding: 0 26px;
+
+    border-radius: 30px;
+
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+
+    transition:
+        transform 0.3s ease,
+        background-color 0.3s ease,
+        color 0.3s ease;
+}
+
+.resume-btn:hover {
+    transform: translateY(-3px);
+}
+
+
+/* ===== Primary button ===== */
+
+.resume-btn-primary {
+    background-color: var(--text-primary);
+    color: var(--bg-main);
+}
+
+.resume-btn-primary:hover {
+    background-color: #e6e6e6;
+    color: var(--bg-main);
+}

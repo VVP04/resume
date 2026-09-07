@@ -1,6 +1,6 @@
-from django.views.generic import DetailView, ListView, TemplateView
+from django.views.generic import TemplateView
 
-from .models import Project
+from .models import SkillCategory, Education, Experience
 
 
 class HomeView(TemplateView):
@@ -17,21 +17,15 @@ class ResumeView(TemplateView):
 
     template_name = 'resume.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
 
-class PortfolioListView(ListView):
+        context["skill_categories"] = SkillCategory.objects.prefetch_related(
+            "skills"
+        )
 
-    model = Project
-    template_name = 'portfolio_list.html'
-    context_object_name = 'projects'
+        context["educations"] = Education.objects.all()
 
+        context["experiences"] = Experience.objects.all()
 
-class PortfolioDetailView(DetailView):
-
-    model = Project
-    template_name = 'portfolio_detail.html'
-    context_object_name = 'project'
-
-
-class ContactView(TemplateView):
-
-    template_name = 'contacts.html'
+        return context

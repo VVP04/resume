@@ -1,0 +1,255 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link
+    rel="stylesheet"
+    href="{% static 'main/css/resume.css' %}"
+>
+{% endblock %}
+
+{% block page_title %}
+Резюме
+{% endblock %}
+
+{% block page_subtitle %}
+Мой профессиональный опыт, ключевые навыки и стек технологий
+{% endblock %}
+
+{% block content %}
+
+<section class="resume">
+
+    <aside class="resume-profile">
+
+         <div class="resume-avatar">
+            <img
+                src="{% static 'main/img/profile.jpg' %}"
+                alt="Владимир Плесовских"
+            >
+        </div>
+
+        <h1 class="resume-name">
+            Владимир Плесовских
+        </h1>
+
+        <section class="resume-skills">
+
+            <h2 class="resume-section-title">Skills</h2>
+
+            {% for category in skill_categories %}
+
+                <div class="resume-skills-group">
+
+                    <h3>
+                        {{ category.name }}
+                    </h3>
+
+                    <div class="resume-skill-list">
+
+                        {% for skill in category.skills.all %}
+                            <span>{{ skill.name }}</span>
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+            
+        </section>
+
+    </aside>
+
+    <div class="resume-content">
+
+        <section class="resume-education">
+
+            <h2 class="education-block-title">
+                <i class="bi bi-mortarboard"></i> Образование
+            </h2>
+
+            <div class="education-type-section">
+
+                <h3 class="education-type-title">Высшее образование</h3>
+
+                <div class="education-timeline">
+
+                    {% for edu in educations %}
+
+                        {% if edu.education_type == 'higher' %}
+
+                            <div class="timeline-item">
+
+                                <div class="timeline-marker"></div>
+
+                                <div class="timeline-content">
+
+                                    <h4 class="education-specialty">
+                                        {{ edu.specialty }}
+                                    </h4>
+
+                                    <span class="education-degree">
+                                        {{ edu.degree }}
+                                    </span>
+
+                                    <span class="education-years">
+                                        {{ edu.start_year }} — {{ edu.end_year }}
+                                    </span>
+
+                                    <div class="education-institution">
+                                        <i class="bi bi-building"></i> {{ edu.institution }}
+                                    </div>
+
+                                    {% if edu.description %}
+                                        <p class="education-description">
+                                            {{ edu.description }}
+                                        </p>
+                                    {% endif %}
+                                    
+                                    {% if edu.document_url %}
+                                        <div class="education-document">
+                                            <a href="{{ edu.document_url }}" target="_blank" rel="noopener noreferrer">
+                                                <i class="bi bi-file-earmark-text"></i> Посмотреть диплом
+                                            </a>
+                                        </div>
+                                    {% endif %}
+
+                                </div>
+
+                            </div>
+
+                        {% endif %}
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+            <div class="education-type-section">
+
+                <h3 class="education-type-title">Дополнительное образование</h3>
+
+                <div class="education-timeline">
+
+                    {% for edu in educations %}
+
+                        {% if edu.education_type == 'additional' %}
+
+                            <div class="timeline-item">
+
+                                <div class="timeline-marker"></div>
+
+                                <div class="timeline-content">
+
+                                    <h4 class="education-specialty">
+                                        {{ edu.specialty }}
+                                    </h4>
+
+                                    <span class="education-degree">
+                                        {{ edu.degree }}
+                                    </span>
+
+                                    <span class="education-years">
+                                        {{ edu.start_year }} — {{ edu.end_year }}
+                                    </span>
+
+                                    <div class="education-institution">
+                                        <i class="bi bi-building"></i> {{ edu.institution }}
+                                    </div>
+
+                                    {% if edu.description %}
+                                        <p class="education-description">
+                                            {{ edu.description }}
+                                        </p>
+                                    {% endif %}
+                                    
+                                    {% if edu.document_url %}
+                                        <div class="education-document">
+                                            <a href="{{ edu.document_url }}" target="_blank" rel="noopener noreferrer">
+                                                <i class="bi bi-file-earmark-text"></i> Посмотреть документ
+                                            </a>
+                                        </div>
+                                    {% endif %}
+
+                                </div>
+
+                            </div>
+
+                        {% endif %}
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="resume-experience">
+
+            <h2 class="experience-block-title">
+                <i class="bi bi-briefcase"></i> Профессиональный опыт
+            </h2>
+
+            <div class="experience-type-section">
+
+                <div class="experience-timeline">
+
+                    {% for experience in experiences %}
+
+                        <div class="timeline-item">
+
+                            <div class="timeline-marker"></div>
+
+                            <div class="timeline-content">
+
+                                <h4 class="experience-position">
+                                    {{ experience.position }}
+                                </h4>
+
+                                <span class="experience-years">
+                                    {{ experience.start_year }} — {{ experience.end_year }}
+                                </span>
+
+                                <div class="experience-company">
+                                    <i class="bi bi-building"></i> {{ experience.company }}
+                                </div>
+
+                                {% if experience.description_list %}
+                                    <ul class="experience-description">
+                                        {% for item in experience.description_list %}
+                                            <li>{{ item }}.</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}     
+
+                            </div>
+
+                        </div>
+                        
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <div class="resume-buttons">
+
+            <a
+                href=#
+                class="resume-btn resume-btn-primary"
+            >
+                Скачать резюме
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
