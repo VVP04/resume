@@ -1,71 +1,123 @@
 from django.db import models
 
 
-class Project(models.Model):
-    TYPE_CHOICES = [
-        ('project', 'Проект'),
-        ('case', 'Кейс'),
-    ]
-    title = models.CharField(max_length=200, verbose_name='Название')
-    slug = models.SlugField(unique=True, verbose_name='URL-адрес')
-    type = models.CharField(
-        max_length=10, choices=TYPE_CHOICES, verbose_name='Тип'
-    )
-    short_description = models.CharField(
-        max_length=300, verbose_name='Краткое описание'
-    )
-    description = models.TextField(verbose_name='Полное описание')
-    image = models.ImageField(
-        upload_to='projects/',
-        blank=True,
-        null=True,
-        verbose_name='Изображение',
-    )
-    link = models.URLField(blank=True, verbose_name='Ссылка на проект')
-    github_link = models.URLField(
-        blank=True, verbose_name='Ссылка на GitHub'
-    )
-    created_at = models.DateTimeField(
-        auto_now_add=True, verbose_name='Дата создания'
+class SkillCategory(models.Model):
+    name = models.CharField(
+        max_length=100,
+        unique=True,
+        verbose_name="Название",
     )
 
     class Meta:
-        ordering = ['-created_at']
-        verbose_name = 'Проект'
-        verbose_name_plural = 'Проекты'
+        verbose_name = "Категория навыков"
+        verbose_name_plural = "Категории навыков"
 
     def __str__(self):
-        return self.title
+        return self.name
 
 
 class Skill(models.Model):
-    name = models.CharField(max_length=100, verbose_name='Название')
+    name = models.CharField(
+        max_length=100,
+        verbose_name="Название",
+    )
+
+    category = models.ForeignKey(
+        SkillCategory,
+        on_delete=models.CASCADE,
+        related_name="skills",
+        verbose_name="Категория",
+    )
 
     class Meta:
-        verbose_name = 'Навык'
-        verbose_name_plural = 'Навыки'
+        verbose_name = "Навык"
+        verbose_name_plural = "Навыки"
 
     def __str__(self):
         return self.name
 
 
 class Education(models.Model):
-    institution = models.CharField(
-        max_length=200, verbose_name='Учебное заведение'
+    class EducationType(models.TextChoices):
+        HIGHER = "higher", "Высшее образование"
+        ADDITIONAL = "additional", "Дополнительное образование"
+
+    education_type = models.CharField(
+        "Тип образования",
+        max_length=20,
+        choices=EducationType.choices,
+    )
+    specialty = models.CharField(
+        "Специальность",
+        max_length=255,
     )
     degree = models.CharField(
-        max_length=200, verbose_name='Степень / Специальность'
+        "Степень",
+        max_length=100,
     )
-    start_date = models.DateField(verbose_name='Начало')
-    end_date = models.DateField(
-        blank=True, null=True, verbose_name='Окончание'
+    start_year = models.PositiveIntegerField(
+        "Год начала",
     )
-    description = models.TextField(blank=True, verbose_name='Описание')
+    end_year = models.PositiveIntegerField(
+        "Год окончания",
+    )
+    institution = models.CharField(
+        "Учебное заведение",
+        max_length=255,
+    )
+    description = models.TextField(
+        "Описание",
+        blank=True,
+    )
+    document_url = models.URLField(
+        "Ссылка на документ",
+        blank=True,
+    )
 
     class Meta:
-        ordering = ['-start_date']
-        verbose_name = 'Образование'
-        verbose_name_plural = 'Образование'
+        verbose_name = "Образование"
+        verbose_name_plural = "Образование"
+        ordering = ["start_year"]
 
     def __str__(self):
-        return f'{self.degree} — {self.institution}'
+        return f"{self.specialty} — {self.degree}"
+
+
+class Experience(models.Model):
+    position = models.CharField(
+        "Должность",
+        max_length=255,
+    )
+    company = models.CharField(
+        "Компания",
+        max_length=255,
+    )
+    start_year = models.PositiveIntegerField(
+        "Год начала",
+    )
+    end_year = models.PositiveIntegerField(
+        "Год окончания",
+    )
+    description = models.TextField(
+        "Описание",
+        blank=True,
+    )
+
+    class Meta:
+        verbose_name = "Опыт"
+        verbose_name_plural = "Опыт"
+        ordering = ["start_year"]
+
+    def __str__(self):
+        return f"{self.position}"
+    
+    @property
+    def description_list(self):
+        if not self.description:
+            return []
+        
+        return [
+            item.strip() 
+            for item in self.description.split('.') 
+            if item.strip()
+        ]
