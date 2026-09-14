@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView
 
-from .models import SkillCategory, Education, Experience
+from .models import Education, Experience, SkillCategory
 
 
 class HomeView(TemplateView):

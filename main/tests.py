@@ -1,7 +1,8 @@
 import pytest
 from bs4 import BeautifulSoup
 from django.urls import reverse
-from .models import SkillCategory, Skill, Education, Experience
+
+from .models import Education, Experience, Skill, SkillCategory
 
 
 @pytest.mark.xfail(reason="URL ещё не подключены")
@@ -323,7 +324,8 @@ def test_resume_page_experience(client):
     assert "Hexlet" in content
     assert "2024 — 2025" in content
 
-    assert "Изучение Python и объектно-ориентированного программирования" in content
+    assert "Изучение Python " \
+    "и объектно-ориентированного программирования" in content
     assert "Разработка приложений на Django" in content
     assert "Работа с базами данных и Git" in content
     assert "Написание автоматизированных тестов" in content
