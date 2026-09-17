@@ -1,5 +1,8 @@
 .PHONY: run lint makemigrations migrate
 
+install:
+	uv sync
+
 run:
 	uv run python manage.py runserver
 
@@ -22,4 +25,7 @@ test-vv:
 	uv run pytest -vv
 
 test-cov:
-	uv run pytest --cov=main --cov-report=term-missing
+	uv run pytest --cov=main --cov-report=term-missing --cov-report=xml
+
+check:
+	uv run python manage.py check

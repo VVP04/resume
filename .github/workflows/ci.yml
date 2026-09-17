@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+    checks:
+      runs-on: ubuntu-latest
+      
+      env:
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        
+      steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        
+      - name: Set up Python
+        uses: actions/setup-python@v7
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10
+      
+      - name: Install dependencies
+        run: make install
+
+      - name: Run tests with coverage
+        run: make test-cov
+      
+      - name: Run ruff linter
+        run: make lint
+
+      - name: Run Django checks
+        run: make check
+        
+      - name: Upload coverage to Coveralls
+        uses: coverallsapp/github-action@v2
+        with:
+          format: cobertura
+          file: coverage.xml

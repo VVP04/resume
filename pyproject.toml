@@ -17,3 +17,9 @@ dev = [
     "pytest-django>=4.14.0",
     "ruff>=0.16.0",
 ]
+
+[tool.coverage.run]
+omit = [
+    "main/tests.py",
+    "main/migrations/*",
+]
