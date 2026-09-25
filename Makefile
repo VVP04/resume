@@ -1,4 +1,4 @@
-.PHONY: run lint makemigrations migrate install deploy pull collectstatic reload check test test-vv test-cov
+.PHONY: run lint makemigrations migrate install deploy pull collectstatic reload check test test-vv test-cov freeze
 
 install:
 	uv sync
@@ -29,6 +29,9 @@ test-cov:
 
 check:
 	uv run python manage.py check
+
+freeze:
+	uv pip freeze > requirements.txt
 
 pull:
 	git pull
