@@ -1,4 +1,4 @@
-.PHONY: run lint makemigrations migrate
+.PHONY: run lint makemigrations migrate install deploy pull collectstatic reload check test test-vv test-cov
 
 install:
 	uv sync
@@ -29,3 +29,14 @@ test-cov:
 
 check:
 	uv run python manage.py check
+
+pull:
+	git pull
+
+collectstatic:
+	uv run python manage.py collectstatic --noinput
+
+reload:
+	touch /var/www/VVP04_pythonanywhere_com_wsgi.py
+
+deploy: pull install migrate collectstatic reload
