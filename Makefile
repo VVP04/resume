@@ -31,7 +31,7 @@ check:
 	uv run python manage.py check
 
 freeze:
-	uv pip freeze > requirements.txt
+	uv export --no-dev --format requirements-txt > requirements.txt
 
 pull:
 	git pull
