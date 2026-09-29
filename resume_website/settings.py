@@ -39,6 +39,8 @@ DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', 'localhost').split(',')
 
+CSRF_TRUSTED_ORIGINS = ['https://resume-b3ec9.containers.snapdeploy.app']
+
 
 # Application definition
 
